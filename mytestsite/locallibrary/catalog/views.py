@@ -59,6 +59,7 @@ class AuthorDetailView(generic.DetailView):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
@@ -165,6 +166,10 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
+=======
+class BookDetailView(generic.DetailView):
+    model = Book    
+>>>>>>> parent of dbdd956... add book and author list
 =======
 class BookDetailView(generic.DetailView):
     model = Book    
