@@ -1,7 +1,6 @@
 """locallibrary URL Configuration
-
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+    https://docs.djangoproject.com/en/2.0/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -20,25 +19,39 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-#+= extends the urlpatterns, could also just add everything inside original decleration
-# Use include() to add paths from the catalog application
-from django.conf.urls import include
+
+from django.urls import path
+from django.contrib import admin
+
+# Use include() to add URLS from the catalog application and authentication system
+from django.urls import include
+
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+]
+
 
 urlpatterns += [
     path('catalog/', include('catalog.urls')),
 ]
 
-#Add URL maps to redirect the base URL to our applicaton
-from django.views.generic import RedirectView
-urlpatterns += [
-    path('', RedirectView.as_view(url='/catalog/')),
-]
 
-#Use static() to add url mapping to serve static files during development (only)
+# Use static() to add url mapping to serve static files during development (only)
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+urlpatterns+= static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+#Add URL maps to redirect the base URL to our application
+from django.views.generic import RedirectView
+urlpatterns += [
+    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+]
+
+
 
 #Add Django site authentication urls (for login, logout, password management)
 urlpatterns += [
