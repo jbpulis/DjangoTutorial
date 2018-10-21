@@ -2,14 +2,27 @@
 
 {% block content %}
     <h1>Book List</h1>
+<<<<<<< HEAD
     {% if book_list %}
     <ul>
+=======
+
+    {% if book_list %}
+    <ul>
+
+>>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
       {% for book in book_list %}
       <li>
         <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
       </li>
       {% endfor %}
+<<<<<<< HEAD
     </ul>
+=======
+
+    </ul>
+
+>>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
     {% else %}
       <p>There are no books in the library.</p>
     {% endif %}
