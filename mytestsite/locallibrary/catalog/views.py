@@ -2,13 +2,10 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
-
-<<<<<<< HEAD
 from catalog.models import Book, Author, BookInstance, Genre
 from django.contrib.auth.decorators import login_required
-=======
 from .models import Book, Author, BookInstance, Genre
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
+
 
 #@login_required #requires login to view
 def index(request):
@@ -38,16 +35,12 @@ from django.views import generic
 
 
 class BookListView(generic.ListView):
-    """
-    Generic class-based view for a list of books.
-    """
     model = Book
     paginate_by = 10
 
-<<<<<<< HEAD
     # Number of visits to this view, as counted in the session variable.
-    num_visits = request.session.get('num_visits', 0)
-    request.session['num_visits'] = num_visits + 1
+    #num_visits = request.session.get('num_visits', 0)
+    #request.session['num_visits'] = num_visits + 1
 
     context = {
         'num_books' : num_books,
@@ -56,24 +49,16 @@ class BookListView(generic.ListView):
         'num_authors' : num_authors,
         'num_genre' : num_genre,
         'num_potter' : num_potter,
-        'num_visits' : num_visits,
+        #'num_visits' : num_visits,
     }
-=======
+
 class BookDetailView(generic.DetailView):
-    """
-    Generic class-based detail view for a book.
-    """
     model = Book
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
 
 class AuthorListView(generic.ListView):
-    """
-    Generic class-based list view for a list of authors.
-    """
     model = Author
     paginate_by = 10
 
-<<<<<<< HEAD
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -81,24 +66,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 class BookListView(generic.ListView):
    model = Book
    paginate_by = 5
-=======
 
 class AuthorDetailView(generic.DetailView):
-    """
-    Generic class-based detail view for an author.
-    """
     model = Author
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
 
-
-<<<<<<< HEAD
-<<<<<<< HEAD
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
-    """
-    Generic class-based view listing books on loan to current user.
-    """
     model = BookInstance
     template_name ='catalog/bookinstance_list_borrowed_user.html'
     paginate_by = 10
@@ -111,9 +85,6 @@ class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
 from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class LoanedBooksAllListView(PermissionRequiredMixin,generic.ListView):
-    """
-    Generic class-based view listing all books on loan. Only visible to users with can_mark_returned permission.
-    """
     model = BookInstance
     permission_required = 'catalog.can_mark_returned'
     template_name ='catalog/bookinstance_list_borrowed_all.html'
@@ -133,9 +104,6 @@ from .forms import RenewBookForm
 
 @permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
-    """
-    View function for renewing a specific BookInstance by librarian
-    """
     book_inst=get_object_or_404(BookInstance, pk = pk)
 
     # If this is a POST request then process the Form data
@@ -187,7 +155,6 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
 #Classes created for the forms challenge
 class BookCreate(PermissionRequiredMixin, CreateView):
     model = Book
-<<<<<<< HEAD
 
 class AuthorListView(generic.ListView):
     model = Author
@@ -197,9 +164,6 @@ class AuthorDetailView(generic.DetailView):
     model = Author
 
 class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
-    """
-    Generic class-based view listing books on loan to current user.
-    """
     model = BookInstance
     template_name ='catalog/bookinstance_list_borrowed_user.html'
     paginate_by = 10
@@ -231,9 +195,6 @@ from .forms import RenewBookForm
 
 @permission_required('catalog.can_mark_returned')
 def renew_book_librarian(request, pk):
-    """
-    View function for renewing a specific BookInstance by librarian
-    """
     book_inst=get_object_or_404(BookInstance, pk = pk)
 
     # If this is a POST request then process the Form data
@@ -257,7 +218,7 @@ def renew_book_librarian(request, pk):
         form = RenewBookForm(initial={'renewal_date': proposed_renewal_date,})
 
     return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
-=======
+
     fields = '__all__'
     permission_required = 'catalog.can_mark_returned'
 
@@ -270,12 +231,9 @@ class BookDelete(PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_mark_returned'
-=======
+
 class BookDetailView(generic.DetailView):
-    model = Book    
->>>>>>> parent of dbdd956... add book and author list
-=======
+    model = Book
+
 class BookDetailView(generic.DetailView):
-    model = Book    
->>>>>>> parent of dbdd956... add book and author list
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
+    model = Book

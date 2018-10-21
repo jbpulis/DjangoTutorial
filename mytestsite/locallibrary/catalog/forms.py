@@ -2,19 +2,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 import datetime #for checking renewal date range.
 
-<<<<<<< HEAD
-=======
-from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext_lazy as _
-import datetime #for checking renewal date range.
-
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
 from django import forms
 
 class RenewBookForm(forms.Form):
-    """
-    Form for a librarian to renew books.
-    """
     renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
 
     def clean_renewal_date(self):

@@ -6,17 +6,6 @@
 
 {% if author_list %}
   <ul>
-<<<<<<< HEAD
-    {% for author in author_list %}
-      <li>
-        <a href="{{ author.get_absolute_url }}">{{ author }}({{ author.date_of_birth }}- {% if author.date_of_death %}{{author.date_of_death}}{% endif %})</a>
-      </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no authors available.</p>
-  {% endif %}
-=======
 
   {% for author in author_list %}
     <li>
@@ -31,5 +20,4 @@
   <p>There are no authors available.</p>
 {% endif %}
           
->>>>>>> c9d5f6d4dec56cdbc46053641fe8532ee74458cc
 {% endblock %}
