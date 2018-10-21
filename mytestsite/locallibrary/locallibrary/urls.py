@@ -21,7 +21,7 @@ urlpatterns = [
 ]
 
 #+= extends the urlpatterns, could also just add everything inside original decleration
-# Use include() to add paths from the catalog application 
+# Use include() to add paths from the catalog application
 from django.conf.urls import include
 
 urlpatterns += [
@@ -39,3 +39,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+#Add Django site authentication urls (for login, logout, password management)
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
